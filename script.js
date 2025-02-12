@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
     audio.src = "music/background-music.mp3"; // Ensure the file exists in the correct directory
     audio.loop = true;
     audio.autoplay = true;
-    audio.volume = 0.2; // Set volume (adjust if needed)
+    audio.volume = 0.8; // Set volume (adjust if needed)
     document.body.appendChild(audio);
 
     // Handle user interaction to play music on some browsers
