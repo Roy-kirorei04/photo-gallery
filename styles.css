@@ -1,0 +1,298 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body and General Layout */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Header */
+header {
+    background-color: #fce4ec;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    font-size: 36px;
+    color: #c2185b;
+}
+
+/* Message Container */
+.message-container {
+    margin-bottom: 40px;
+}
+
+.message-container p {
+    font-size: 20px;
+    font-style: italic;
+    color: #c2185b;
+}
+
+/* Carousel Container */
+.carousel-container {
+    position: relative;
+    width: 30%; /* Reduced carousel width */
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.gallery-wrapper {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.gallery {
+    display: flex;
+}
+
+.slide {
+    min-width: 100%;
+    position: relative;
+}
+
+.slide img {
+    width: 60%; /* Smaller image size */
+    margin: 0 auto;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.caption {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    font-size: 20px;
+    color: white;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 5px;
+    border-radius: 5px;
+}
+
+/* Navigation Buttons */
+#prevBtn, #nextBtn {
+    position: absolute;
+    top: 50%;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    font-size: 30px;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    z-index: 10;
+    transform: translateY(-50%);
+}
+
+#prevBtn {
+    left: 10px;
+}
+
+#nextBtn {
+    right: 10px;
+}
+
+/* Floating Bubbles */
+.bubbles {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.bubble {
+    width: 60px;
+    height: 60px;
+    background-color: #f06292;
+    border-radius: 50%;
+    position: absolute;
+    animation: floatBubbles 10s infinite ease-in-out;
+    opacity: 0.8;
+}
+
+.bubble:nth-child(1) {
+    left: 10%;
+    animation-duration: 10s;
+    animation-delay: 0s;
+}
+
+.bubble:nth-child(2) {
+    left: 20%;
+    animation-duration: 12s;
+    animation-delay: 2s;
+}
+
+.bubble:nth-child(3) {
+    left: 30%;
+    animation-duration: 11s;
+    animation-delay: 4s;
+}
+
+.bubble:nth-child(4) {
+    left: 40%;
+    animation-duration: 13s;
+    animation-delay: 6s;
+}
+
+.bubble:nth-child(5) {
+    left: 50%;
+    animation-duration: 15s;
+    animation-delay: 3s;
+}
+
+.bubble:nth-child(6) {
+    left: 60%;
+    animation-duration: 14s;
+    animation-delay: 5s;
+}
+
+.bubble:nth-child(7) {
+    left: 70%;
+    animation-duration: 16s;
+    animation-delay: 7s;
+}
+
+.bubble:nth-child(8) {
+    left: 80%;
+    animation-duration: 9s;
+    animation-delay: 8s;
+}
+
+.bubble:nth-child(9) {
+    left: 90%;
+    animation-duration: 10s;
+    animation-delay: 6s;
+}
+
+.bubble:nth-child(10) {
+    left: 5%;
+    animation-duration: 11s;
+    animation-delay: 4s;
+}
+
+@keyframes floatBubbles {
+    0% {
+        bottom: -60px;
+        opacity: 1;
+    }
+    50% {
+        bottom: 200px;
+        opacity: 0.5;
+        transform: scale(1.2);
+    }
+    100% {
+        bottom: -60px;
+        opacity: 1;
+    }
+}
+
+/* Footer */
+footer {
+    background-color: #fce4ec;
+    padding: 20px;
+    margin-top: 40px;
+    border-radius: 10px;
+}
+
+footer .footer-content {
+    text-align: center;
+}
+
+footer .valentines-message {
+    font-size: 24px;
+    color: #c2185b;
+    font-weight: bold;
+}
+
+footer .personal-message {
+    font-size: 18px;
+    color: #333;
+    margin: 10px 0;
+}
+
+footer .contact-info {
+    font-size: 16px;
+    color: #555;
+}
+
+footer .contact-info a {
+    color: #c2185b;
+    text-decoration: none;
+}
+
+footer .contact-info a:hover {
+    text-decoration: underline;
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+    .carousel-container {
+        width: 90%;
+    }
+
+    .gallery-wrapper {
+        flex-direction: column;
+    }
+
+    .slide {
+        min-width: 100%;
+    }
+
+    .caption {
+        font-size: 16px;
+        bottom: 5px;
+        left: 5px;
+    }
+
+    footer .valentines-message {
+        font-size: 20px;
+    }
+
+    footer .personal-message {
+        font-size: 16px;
+    }
+
+    footer .contact-info {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .carousel-container {
+        width: 100%;
+    }
+
+    header h1 {
+        font-size: 28px;
+    }
+
+    .message-container p {
+        font-size: 16px;
+    }
+
+    .caption {
+        font-size: 14px;
+    }
+
+    footer .valentines-message {
+        font-size: 18px;
+    }
+
+    footer .personal-message {
+        font-size: 14px;
+    }
+
+    footer .contact-info {
+        font-size: 12px;
+    }
+}
