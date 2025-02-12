@@ -30,14 +30,52 @@ document.addEventListener("DOMContentLoaded", () => {
     const audio = document.createElement("audio");
     audio.src = "music/background-music.mp3"; // Ensure the file exists in the correct directory
     audio.loop = true;
-    audio.autoplay = true;
-    audio.volume = 0.8; // Set volume (adjust if needed)
+    audio.volume = 0.8; // Set volume to 0.8
     document.body.appendChild(audio);
 
-    // Handle user interaction to play music on some browsers
-    document.addEventListener("click", () => {
+    // Play/Pause Button
+    const musicButton = document.createElement("button");
+    musicButton.textContent = "Play Music";
+    musicButton.style.position = "fixed";
+    musicButton.style.bottom = "20px";
+    musicButton.style.right = "20px";
+    musicButton.style.padding = "12px 24px";
+    musicButton.style.fontSize = "18px";
+    musicButton.style.cursor = "pointer";
+    musicButton.style.border = "none";
+    musicButton.style.borderRadius = "20px";
+    musicButton.style.backgroundColor = "#ff4d6d";
+    musicButton.style.color = "white";
+    musicButton.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.1)";
+    musicButton.style.transition = "all 0.3s ease";
+    
+    musicButton.addEventListener("mouseover", () => {
+        musicButton.style.backgroundColor = "#e03e5e";
+    });
+
+    musicButton.addEventListener("mouseout", () => {
+        musicButton.style.backgroundColor = "#ff4d6d";
+    });
+
+    document.body.appendChild(musicButton);
+
+    musicButton.addEventListener("click", () => {
         if (audio.paused) {
             audio.play();
+            musicButton.textContent = "Pause Music";
+        } else {
+            audio.pause();
+            musicButton.textContent = "Play Music";
         }
     });
+
+    // Handle user interaction to play music on some browsers
+    const playMusic = () => {
+        if (audio.paused) {
+            audio.play();
+            musicButton.textContent = "Pause Music";
+            document.removeEventListener("click", playMusic);
+        }
+    };
+    document.addEventListener("click", playMusic);
 });
