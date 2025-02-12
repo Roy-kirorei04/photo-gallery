@@ -43,10 +43,10 @@ document.addEventListener("DOMContentLoaded", () => {
     musicButton.style.fontSize = "18px";
     musicButton.style.cursor = "pointer";
     musicButton.style.border = "none";
-    musicButton.style.borderRadius = "20px";
+    musicButton.style.borderRadius = "50px";
     musicButton.style.backgroundColor = "#ff4d6d";
     musicButton.style.color = "white";
-    musicButton.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.1)";
+    musicButton.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.2)";
     musicButton.style.transition = "all 0.3s ease";
     
     musicButton.addEventListener("mouseover", () => {
@@ -59,23 +59,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.body.appendChild(musicButton);
 
+    let isPlaying = false; // Track music state
+    
     musicButton.addEventListener("click", () => {
-        if (audio.paused) {
-            audio.play();
-            musicButton.textContent = "Pause Music";
-        } else {
+        if (isPlaying) {
             audio.pause();
             musicButton.textContent = "Play Music";
+        } else {
+            audio.play().catch(error => console.error("Music play error:", error));
+            musicButton.textContent = "Pause Music";
         }
+        isPlaying = !isPlaying;
     });
 
-    // Handle user interaction to play music on some browsers
-    const playMusic = () => {
-        if (audio.paused) {
-            audio.play();
+    // Handle user interaction to allow music to play
+    const enableMusic = () => {
+        if (!isPlaying) {
+            audio.play().catch(error => console.error("Music play error:", error));
             musicButton.textContent = "Pause Music";
-            document.removeEventListener("click", playMusic);
+            isPlaying = true;
         }
+        document.removeEventListener("click", enableMusic);
     };
-    document.addEventListener("click", playMusic);
+    document.addEventListener("click", enableMusic);
 });
