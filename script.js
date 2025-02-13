@@ -5,9 +5,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let index = 0;
     const totalImages = gallery.children.length;
+    let autoSlide;
 
     function updateGallery() {
         const translateX = `-${index * 100}%`;
+        gallery.style.transition = "transform 0.5s ease-in-out";
         gallery.style.transform = `translateX(${translateX})`;
     }
 
@@ -21,33 +23,45 @@ document.addEventListener("DOMContentLoaded", () => {
         updateGallery();
     }
 
-    nextBtn.addEventListener("click", nextSlide);
-    prevBtn.addEventListener("click", prevSlide);
+    nextBtn.addEventListener("click", () => {
+        nextSlide();
+        restartAutoSlide();
+    });
 
-    setInterval(nextSlide, 3000);
+    prevBtn.addEventListener("click", () => {
+        prevSlide();
+        restartAutoSlide();
+    });
 
-    // Background Music Functionality
-    const audio = document.createElement("audio");
-    audio.src = "instrumental.ogg"; // Ensure the file exists in the correct directory
+    function restartAutoSlide() {
+        clearInterval(autoSlide);
+        autoSlide = setInterval(nextSlide, 3000);
+    }
+
+    restartAutoSlide();
+
+    // 🎵 Background Music Functionality
+    const audio = new Audio("instrumental.ogg"); // Ensure this file exists
     audio.loop = true;
     audio.volume = 0.6;
-    document.body.appendChild(audio);
 
-    // Play/Pause Button
+    // 🎵 Play/Pause Music Button
     const musicButton = document.createElement("button");
-    musicButton.textContent = "Play Music";
-    musicButton.style.position = "fixed";
-    musicButton.style.bottom = "20px";
-    musicButton.style.right = "20px";
-    musicButton.style.padding = "12px 24px";
-    musicButton.style.fontSize = "18px";
-    musicButton.style.cursor = "pointer";
-    musicButton.style.border = "none";
-    musicButton.style.borderRadius = "50px";
-    musicButton.style.backgroundColor = "#ff4d6d";
-    musicButton.style.color = "white";
-    musicButton.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.2)";
-    musicButton.style.transition = "all 0.3s ease";
+    musicButton.textContent = "Play Music 🎵";
+    Object.assign(musicButton.style, {
+        position: "fixed",
+        bottom: "20px",
+        right: "20px",
+        padding: "12px 24px",
+        fontSize: "18px",
+        cursor: "pointer",
+        border: "none",
+        borderRadius: "50px",
+        backgroundColor: "#ff4d6d",
+        color: "white",
+        boxShadow: "0 4px 6px rgba(0, 0, 0, 0.2)",
+        transition: "all 0.3s ease"
+    });
 
     musicButton.addEventListener("mouseover", () => {
         musicButton.style.backgroundColor = "#e03e5e";
@@ -64,10 +78,10 @@ document.addEventListener("DOMContentLoaded", () => {
     musicButton.addEventListener("click", () => {
         if (isPlaying) {
             audio.pause();
-            musicButton.textContent = "Play Music";
+            musicButton.textContent = "Play Music 🎵";
         } else {
             audio.play().then(() => {
-                musicButton.textContent = "Pause Music";
+                musicButton.textContent = "Pause Music ⏸";
             }).catch(error => console.error("Music play error:", error));
         }
         isPlaying = !isPlaying;
