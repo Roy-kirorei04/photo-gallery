@@ -77,10 +77,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
     musicButton.addEventListener("click", () => {
         if (isPlaying) {
-            audio.pause();
+            let fadeOut = setInterval(() => {
+                if (audio.volume > 0.1) {
+                    audio.volume -= 0.1;
+                } else {
+                    audio.pause();
+                    audio.volume = 0.6; // Reset volume for next play
+                    clearInterval(fadeOut);
+                }
+            }, 200); // Gradual fade over ~1 second
             musicButton.textContent = "Play Music 🎵";
         } else {
+            audio.volume = 0; // Start from zero
             audio.play().then(() => {
+                let fadeIn = setInterval(() => {
+                    if (audio.volume < 0.6) {
+                        audio.volume += 0.1;
+                    } else {
+                        clearInterval(fadeIn);
+                    }
+                }, 200); // Gradual fade-in
                 musicButton.textContent = "Pause Music ⏸";
             }).catch(error => console.error("Music play error:", error));
         }
