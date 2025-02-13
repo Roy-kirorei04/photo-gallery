@@ -28,11 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Background Music Functionality
     const audio = document.createElement("audio");
-<<<<<<< HEAD
-    audio.src = "instrumental.ogg"; // Ensure the file exists in the correct directory
-=======
-    audio.src = "music/instrumental.mp3"; // Ensure the file exists in the correct directory
->>>>>>> a109675a2dfc8684232e127d586aecc1b4d52b10
+    audio.src = "music/instrumental.ogg"; // Ensure the file exists in the correct directory
     audio.loop = true;
     audio.volume = 0.6;
     document.body.appendChild(audio);
