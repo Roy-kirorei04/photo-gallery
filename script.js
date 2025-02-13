@@ -12,25 +12,25 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function nextSlide() {
-        index = (index + 1) % totalImages; // Move to the next slide, loop back to the first one
+        index = (index + 1) % totalImages;
         updateGallery();
     }
 
     function prevSlide() {
-        index = (index - 1 + totalImages) % totalImages; // Move to the previous slide, loop back to the last one
+        index = (index - 1 + totalImages) % totalImages;
         updateGallery();
     }
 
-    nextBtn.addEventListener("click", nextSlide); // When the "Next" button is clicked
-    prevBtn.addEventListener("click", prevSlide); // When the "Previous" button is clicked
+    nextBtn.addEventListener("click", nextSlide);
+    prevBtn.addEventListener("click", prevSlide);
 
-    setInterval(nextSlide, 3000); // Auto slide every 3 seconds
+    setInterval(nextSlide, 3000);
 
     // Background Music Functionality
     const audio = document.createElement("audio");
-    audio.src = "music/background-music.mp3"; // Ensure the file exists in the correct directory
+    audio.src = "instrumental.ogg"; // Ensure the file exists in the correct directory
     audio.loop = true;
-    audio.volume = 0.8; // Set volume to 0.8
+    audio.volume = 0.6;
     document.body.appendChild(audio);
 
     // Play/Pause Button
@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
     musicButton.style.color = "white";
     musicButton.style.boxShadow = "0 4px 6px rgba(0, 0, 0, 0.2)";
     musicButton.style.transition = "all 0.3s ease";
-    
+
     musicButton.addEventListener("mouseover", () => {
         musicButton.style.backgroundColor = "#e03e5e";
     });
@@ -59,27 +59,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.body.appendChild(musicButton);
 
-    let isPlaying = false; // Track music state
-    
+    let isPlaying = false;
+
     musicButton.addEventListener("click", () => {
         if (isPlaying) {
             audio.pause();
             musicButton.textContent = "Play Music";
         } else {
-            audio.play().catch(error => console.error("Music play error:", error));
-            musicButton.textContent = "Pause Music";
+            audio.play().then(() => {
+                musicButton.textContent = "Pause Music";
+            }).catch(error => console.error("Music play error:", error));
         }
         isPlaying = !isPlaying;
     });
-
-    // Handle user interaction to allow music to play
-    const enableMusic = () => {
-        if (!isPlaying) {
-            audio.play().catch(error => console.error("Music play error:", error));
-            musicButton.textContent = "Pause Music";
-            isPlaying = true;
-        }
-        document.removeEventListener("click", enableMusic);
-    };
-    document.addEventListener("click", enableMusic);
 });

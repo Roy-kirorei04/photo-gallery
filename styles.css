@@ -8,7 +8,7 @@
 /* Body and General Layout */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+    background-color: #f1f1f1;
     color: #333;
     text-align: center;
     padding: 20px;
@@ -16,7 +16,7 @@ body {
 
 /* Header */
 header {
-    background-color: #fce4ec;
+    background-color: #ff93b7;
     padding: 20px;
     border-radius: 10px;
     margin-bottom: 20px;
