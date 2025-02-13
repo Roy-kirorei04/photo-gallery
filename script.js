@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function updateGallery() {
         const translateX = `-${index * 100}%`;
-        gallery.style.transition = "transform 0.5s ease-in-out";
+        gallery.style.transition = "transform 0.7s ease-in-out";
         gallery.style.transform = `translateX(${translateX})`;
     }
 
@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function restartAutoSlide() {
         clearInterval(autoSlide);
-        autoSlide = setInterval(nextSlide, 3000);
+        autoSlide = setInterval(nextSlide, 2500);
     }
 
     restartAutoSlide();
@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // 🎵 Background Music Functionality
     const audio = new Audio("instrumental.ogg"); // Ensure this file exists
     audio.loop = true;
-    audio.volume = 0.6;
+    audio.volume = 0.4;
 
     // 🎵 Play/Pause Music Button
     const musicButton = document.createElement("button");
@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     audio.volume -= 0.1;
                 } else {
                     audio.pause();
-                    audio.volume = 0.6; // Reset volume for next play
+                    audio.volume = 0.4; // Reset volume for next play
                     clearInterval(fadeOut);
                 }
             }, 200); // Gradual fade over ~1 second
@@ -91,7 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
             audio.volume = 0; // Start from zero
             audio.play().then(() => {
                 let fadeIn = setInterval(() => {
-                    if (audio.volume < 0.6) {
+                    if (audio.volume < 0.4) {
                         audio.volume += 0.1;
                     } else {
                         clearInterval(fadeIn);
